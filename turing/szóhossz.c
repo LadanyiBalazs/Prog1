@@ -1,12 +1,9 @@
-#include <stdio.h>
-int
-main (void)
-{
-  int h = 0;
-  int n = 0x01;
-  do
-    ++h;
-  while (n <<= 1);
-  printf ("A szohossz ezen a gepen: %d bites\n", h);
-  return 0;
+ int main() {
+  int a = 1;
+  int b = 0;
+    while (a != 0) {
+      a <<= 1;
+      b++;
+    }
+  printf("Szóhossz: %d\n",b);
 }
