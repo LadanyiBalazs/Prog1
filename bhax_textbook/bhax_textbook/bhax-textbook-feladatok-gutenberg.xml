@@ -1,0 +1,188 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Gutenberg!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+        <cover>
+            <para>
+                Programozás tankönyvek rövid olvasónaplói.
+            </para>
+        </cover>
+    </info>
+    <section>
+        <title>Programozási alapfogalmak - Pici könyv</title>
+        <para>         
+            <emphasis role="strong">Bevezetés:</emphasis>     
+        </para>
+        <para>A könyvünk azzal indít, hogy leírja a követelményt, ami a bevezetés az informatikába nevű tantárgy, és a folytatást is megadja.</para>
+        <para>
+            <emphasis role="strong">1. Fejezet::</emphasis> 
+        </para>
+        <para>A programozási nyelvek alapjaitt tisztázza a könyv, megismerkedünk néhány alap fogalommal. Három részre osztjuk a programozási nyelveket: gépi nyelv, assembly szintű nyelv és magas szintű nyelv.
+        A következő alfejezetben osztályokra bontjuk a programnyelveket: Imperatív nyelvek, Dekleratív nyelvek és máselvű nyelvek. Ezeknek a csoportoknak tiztázzuk a tulajdonságait és alcsoportjait. 
+        Ezután A jegyzetben alkalmazott formális jelölésrendszereket nézzük meg, amelynek három típusa van: terminális, nem terminális és alternatíva.
+        Az utolsó alfejezetben a programnyelekről alapjairól van egy összegző.</para>
+        <para>
+            <emphasis role="strong">2. Fejezet:</emphasis> 
+        </para>
+        <para>Ebben a fejezetben egy programozási nyelv alapeszközeit, alapfogalmait ismerjük meg. A fejezet elején megnézzük a karakterkészleteket, hogy miket lehet használni. A folytatásban a lexikális egységekről tanulunk. Olvashatunk a többkarakteres szimbólumokról, a szimbolikus nevekről, a címkékről, megjegyzésekről és iterálokról, rengeteg példával. A következő alfejezetünkben megnézzük  a forrásszöveg összeállításának általános szabályait, majd az adattípusokat. először az egyszerű majd az összetett típusokat. 
+        Ezután tanulmányozzuk a nevesített konstansokat, a változókat és a fejezet végén részletesen végignézzük az alapelemeket az egyes nyelvekben.</para>
+        <para>
+           <emphasis role="strong">3. Fejezet:</emphasis>
+        </para>
+        <para>A harmadik fejezet a kifejezésekről szól. Elsőként olvashatunk az általános kifejezésekről, majd a C nyelvben ben lévő kifejezésekről.</para>
+        <para>
+           <emphasis role="strong">4. Fejezet:</emphasis>
+        </para>
+        <para>A negyedik fejezet az utasításokról szól, aminknek 9 fajtája van: 1. Értékadó utasítás, 2. Üres utasítás, 3. Ugró utasítás,  4. Elágaztató utasítások, 5. Ciklusszervezı utasítások, 6. Hívó utasítás, 7. Vezérlésátadó utasítások, 8. I/O utasítások, 9. Egyéb utasítások.</para>
+        <para>
+             <emphasis role="strong">5. Fejezet:</emphasis>
+        </para>
+        <para>
+            Az ötödik fejezetben a programok szerkezetéről van szó, ahol válaszokat kapunk általános kérdésekre. Megnézzük az alap programok felépítését. A fejezet további részében olvashatunk a hívási láncról és a rekurzióról, a másodlagos belépési pontokról, a paraméterkiértékelésről, paraméterátadásról, a blokkokról, a hatáskörről, a fordítási egységről és az egyenes nyelvek eszközeiről.</para>
+        <para>
+            <emphasis role="strong">6. Fejezet:</emphasis>
+        </para>
+        <para>A hatodik fejezet, ami egy kifejezetten rövid fejezet, az absztrakt adattípusokról szól, amik megvalósítják a bezárást vagy információ rejtést.</para>
+        <para>
+            <emphasis role="strong">7. Fejezet:</emphasis>
+        </para>
+        <para>: A hetedik fejezet a csomagról szól, ami az a programegység, amely egyaránt szolgálja a procedurális és az adatabsztrakciót. Ennek eszközei: típus, változó, nevesített konstans, saját kivétel, alprogram, csomag.</para>
+        <para>
+            <emphasis role="strong">8. Fejezet:</emphasis>
+        </para>
+        <para>A nyolcadik fejezet az ada fordításról szól. Megnézzük a pragmákat majd a fordítási egységeket, ami adában lehet: alprogram specifikáció, alprogram törzs, csomag specifikáció, csomag törzs, fordítási alegység, valamint ezek tetszıleges kombinációja.</para>
+        <para>
+            <emphasis role="strong">9. Fejezet:</emphasis>
+        </para>
+        <para>
+            A kilencedik fejezet a kivételkezelésről szól. Leginkább a  PL/I kivételkezelésről és az ada kivételkezelésről. 
+        </para>
+        <para>
+            <emphasis role="strong">10. Fejezet:</emphasis>
+        </para>
+        <para>
+            A tizedik fejezet a generikus programozásról szól, ami az újrafelhasználhatóság és így a procedurális absztrakció eszköze.
+        </para>
+        <para>
+             <emphasis role="strong">11. Fejezet:</emphasis>
+        </para>
+        <para>
+            A tizenegyedik fejezet a párhuzamos programozás elvégzéséről szól, és, hogy milyen eszközökre van szükség ehhez.
+        </para>
+        <para>
+             <emphasis role="strong">12. Fejezet:</emphasis>
+        </para>
+        <para>
+            A tizenkettedik fejezet a taszkról szól, ami szükséges a párhuzamos programozás megvalósításához. Erről résztelesen olvashatunk, és példákkal is alá van támasztva.
+        </para>
+        <para> 
+             <emphasis role="strong">13. Fejezet:</emphasis>    
+        </para>
+        <para>
+            A tizenharmadik fejezet az input/outputról, és annak eszközeiről, ami a Fortran, Cobol, PL/I, Pascal, ADA és a C.
+        </para>
+        <para>
+            <emphasis role="strong">14. Fejezet:</emphasis> 
+        </para>
+        <para>
+            A tizennegyedik és egyben utolsó fejezet az implementéciós kérdésekről szól. Megnézzük különböző területeit és kapcsolóit. 
+        </para>
+        
+    </section>        
+    <section>
+        <title>Programozás bevezetés - KERNIGHANRITCHIE könyv</title>
+        <para>                
+            <citation>KERNIGHANRITCHIE</citation>
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://youtu.be/zmfT9miB-jY">https://youtu.be/zmfT9miB-jY</link>
+        </para>  
+        <para>
+            <emphasis role="strong">1. Fejezet:</emphasis> 
+            </para>
+        <para>A könyv az alapfogalmakkal és ismeretekkel kezdi el a bemutatkozást (változók, állandók, aritmetika, vezérlési szerkezetek, függvények, ill. az egyszerű adatbevitel és -kivitel), hogy az olvasó minél előbb képes legyen programot írni.
+        A legegyszerűbb programmal kezdünk: a "Hello World!"-el. Annyi különbséggel, hogy itt "Hello mindenki!"-t írunk ki. A második feladatban a változókkal ismerkedünk meg, egy Farenheit-fok Celziusz-fok táblázat kiíró programmal. Ebben a fejezetben olvashatunk a kommentekről is először. A következő feladatban a for() ciklusról van szó. Ugyan azt a táblázatot használjunk mint az előző feladatnál. A következő feladatban a szimbolikus állandókat nézzünk meg.  Az ötödik alfejezetünkben a karakterekkel foglalkozó függvényekkel foglalkozunk(beolvasás, kiírás, számlálása, sorok számlálása, szavak számlálása).  A következő feladatban a tömböket tanulmányozzuk, a programunk megszámolja a karaktereket és üres helyeket egy beolvasott szövegben. Ezután függvényekkel dolgozunk. egy függvény segítségével hatványozunk. A fejezet végén megnézzük az argumentumokat és részletesebben tanulunk a tömbökről és a változókról.
+        </para>
+        <para>
+             <emphasis role="strong">2. Fejezet:</emphasis> 
+        </para>
+        <para>
+            A második fejezetben a típusokról, operátorokról és fejezetekről van szó. 
+            Megismerkedünk a változónevekkel, adattípusokkal és méretekkel, állandókkal, deklarációkkal, aritmetikai operátorokkal, relációs és logikai operátorokkal, típuskonverziókkal, inkrementáló és dekrementáló kifejezésekkel, feltételes kifejezésekkel és a precendia és a kifejezés kiértekelési sorrendjével. Ebbe a fejezetbe már nem konkrét programokat írunk meg, hanem kódcsipeteken keresztül mutatja be a könyv a dolgokat.
+        </para>
+        <para>
+             <emphasis role="strong">3. Fejezet:</emphasis> 
+        </para>
+        <para>
+            A harmadik fejezetben a vezérlési szerekezettek ismerkedhetünk meg. Bemutatja a könyv az olyan utasításokat mint if-else, else-if, switch, while és for ciklus, do-while, break és continue, goto és a címkék.
+        </para>
+        <para>
+             <emphasis role="strong">4. Fejezet:</emphasis>
+        </para>
+        <para>
+            A negyedik fejezetben a függvények és programok szerkezetét mutatja be a könyv, egy bővebb formában. Először megismerkedünk a függvényekkel kapcsolatos alapfogalmakkal, és egyszerű függvényekkel, majd rátérünk a nem egész értékkel visszatérő függvényekre is. Folytatjuk a külső változókkal és az érvényességi tartomány szabályaival, majd megnézzük a header állományokat, a statikus változókat, regiszterváltozókat, blokkstruktúrákat, változók inicializálását, rekurziót és végül a C előfeldolgozó rendszert.
+        </para>
+        <para>
+            <emphasis role="strong">5. Fejezet:</emphasis>
+        </para>
+        <para>
+            Az ötödik fejezetben a mutatókkal és tömbökkel ismerkedünk meg. A könyv bemutatja a mutatókat, címeket, függvényargumentumokat és  tömböket három alfejezeten keresztük, és van néhány ábra is, amely sokat segíthet a megértésükben. Ezek után megnézzük a címaritmetikát, karaktermutatókat és függvényeket, mutatótömböket és mutatókat megcímző mutatókat, többdimenziós töbmöket, mutatótömbök inicializálását, mutatók és döbbdimenziós tömböket, parancssor-argumentumokat, függvényeket megcímző mutatókat és megnézzük a bonyolultabb deklarációkat is.
+        </para>
+        <para>
+              <emphasis role="strong">6. Fejezet:</emphasis>
+        </para>
+        <para>
+            A hatodik fejezetben a fruktúrákkal ismerkedhetünk meg. Az elején kezdi a könyv, mint minden mással is. Először megismerkedünk az alapfogalmakkal, aztán továbbmegyünk az alap struktúrákra és függvényekre. Ezek után rátérünk a struktúratömbökre, struktúrákat kijelölő mutatókra, önhivatkozó struktúrákra, keresésre táblázatban, a typedef utasításokra, unionokra és a bitmezőkre. Ennél a fejezetnél is vannak ábrák az elején, ami segíti a struktúrák megértését.
+        </para>
+        <para>
+              <emphasis role="strong">7. Fejezet:</emphasis>
+        </para>
+        <para>
+            A hetedik fejezetben az adatbevitelről és az adatkivitelről tanulhatunk. Ahogy már megszokhattunk az alapokkal indít a könyv, a standard adatbevitel és kivitellel. Aztán rátérünk már a foormátumozott adatkivitelre a printf függvény segítségével, majd megnézzük a változó hosszúságú argumentumisták kezelését, formátumozott adatbevitelt a scanf függvénnyel, hozzáférést az adatállományokhoz, hibakezelést az stderr és exit függvényekkel, szövegsorok beolvavását és kiírását és a további könyvtári függvényeket. Bemutatja a könyv az alapvető hibákat, így nekünk már nem kell belefutnunk ezekbe.
+        </para>
+        <para>
+              <emphasis role="strong">8. Fejezet:</emphasis>
+        </para>
+        <para>
+            A nyolcadik és egyben utolsó fejezetben tanulmányozzuk a kapcsolódást a UNIX operációs rendszerhez. Ebben a fejezetben olyan dolgokkal ismerkedünk meg, mint az állományleírók, alacson szintű adatbevitel és adatkivitel amelyet a read és write függvényekkel  segít elő, az open, create, close és unlunk rendszerhívásokkal és a véletlenszerű hozzáféréssel az Iseek függvénnyel. Az utolsó három alfejezetben pedig példákon keresztül mutatja be a könyv az fopen és getc függvények megvalósítását, katalógus kiírását és tárterület lefoglaló programot.
+        </para>
+        <para>
+             <emphasis role="strong">Összegzés:</emphasis>
+        </para>
+        <para>
+            Összességében a könyv jól bemutatja a C programnyelvhez szükséges dolgokat. Mindent az alapoktól indít, így nem szükséges a könyv olvasása előtt semmilyen tudással rendelkeznünk, ahhoz, hogy megértsük. Rengeteg példát és kódcsipetet használ a könyv, amelyek ráadásul be is vannak kommentezve, így mindenről világos, hogy mit csinál.
+        </para>
+    </section>        
+    <section>
+        <title>Programozás - BME C++ könyv</title>
+        <para>                
+            <citation>BMECPP</citation>
+        </para>
+        <para>
+             <emphasis role="strong">Kivételkezelés</emphasis>
+        </para>
+        <para>
+            A fejezetben először érzékelteti a könyv, a hagyományos hibakezelés problémáit, majd ismerteti a kivétel alapú megoldás szintaktikáját és mechanizmusát. Ezt megmutatja néhány gyakorlati példán keresztül
+        </para>
+            <para>Mi most a kivételek használatának alapjaival fogunk foglalkozni. Először megismerkedünk ahagyományos hibakezeléssel, ahol egy hibás esetek kezelésére jellemző klasszikus megoldást láthatunk.
+            Láthatjuk, hogy az összes hibás esetet a mainen belül kezeljük.
+            </para>
+        <para>
+            A későbbiekben a kivételkezelés alapjairól lesz szó, ami biztosítja, hogy, ha hibát találtunk, akkor a "futás" azonnal a hibakezelő ágon folytatódik. Azonban nem csak hibák, hanem bármely kivételes esetben használható a megoldás.
+            A mainbe egy try-catch blokkot kell használnunk. A try-ba beleírjuk a normál működés kódját, a catch-br pedig a hibakezelés kódot. A throw kulcsszóval kivételt dobunk, amit a catch elkap. 
+            A ValidateAndPrepare függvény pData paramétere NULL, count paramétere pedig kisebb 0-nál. A save függvényben a fájl megnyitása nem sikerül, és az fopen NULL pointer tér vissza. 
+        </para>
+        <para>
+            Az try-catch blokkok egymásba is ágyazhatók. Így lehetőség van arra, hogy alacsonyabb szinten is kezeljök a kivételt magasabb szint mellett.
+        </para>
+        <para>
+            Az elkapott kivételt a throw kulcsszó paraméter nélküli alkalmazásával is ujradobható.
+            A hívási verem visszacserélésének azt nevezzük, amikor egy kivétel dobásakor, annak elkapásáig a függvény hívási láncban lefelé haladva az egyes függvények lokális változói felszabadulnak.
+            A kivétel dobása és elkapása közt kód futhat le.
+        </para>
+        
+    </section>        
+</chapter>                
+

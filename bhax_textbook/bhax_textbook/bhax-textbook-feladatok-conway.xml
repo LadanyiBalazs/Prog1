@@ -1,0 +1,123 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Conway!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title>Hangyaszimulációk</title>
+        <para>
+            Írj Qt C++-ban egy hangyaszimulációs programot, a forrásaidról utólag reverse engineering jelleggel
+            készíts UML osztálydiagramot is!
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/10/10/myrmecologist">https://bhaxor.blog.hu/2018/10/10/myrmecologist</link>
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/tree/master/Conway/Ant">https://github.com/LadanyiBalazs/Prog1/tree/master/Conway/Ant</link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat:  Fordításkor a qmake-et használjuk amit a letöltött QT keretrendszerben találhatunk. A P billentyű lenyomásával lehet pause-olni, vagyis szüneteltetni,
+            a Q lenyomásával pedig kilép a programból.
+        </para>       
+	<para>
+                futtatási parancsok:<command>-/home/.../qmake myrmecologist.pro</command> ,<command>-make</command> ,<command>./myrmecologist -w 250 -m 150 -n 400 -t 10 -p 5 -f 80 -d 0 -a 255 -i 3 -s 3 -c 22</command> 
+            </para>
+            <para>
+                Az Ant osztályba a hangya tulajdonságai vannak megadva. A két koordinátája, x és y, a dir (direction) pedig az irányt határozza meg amibe
+                tart. A + jelek azt jelölik, hogy public elérésűek, tehát az osztályon kívűlről is el lehet érni őket, valamint látszódik is osztályon kívülről. A - jellek pedig private elérésőek, tehát
+                csak az osztálon belülről lehet elérni őket. Az ants egy vektor, ami a hangyákat tárolja.
+            </para>
+            <para>
+                Az Antwin tulajdonságba az ablak mérete van megadva pixelben, szélesség és hosszúság. A cellwidth és a cellhight pedig a hangyák, vagy cellák méretét adják meg.
+                Az antThread a hangyaszámításokat végzi. A grids kirajzolja a 2 rácsot, amiből a gridlx egyet tárol. A closeEvent() (kikapcsolási esemény) meghívja az AntThread
+                osztályból a finish() (befejezés)-t ami leállítja az ablakot azzal, hogy a running-ot hamis értékre állítja. A keyPressEvent() (gomblenyomás esemény) a gombnyomásokat dolgozza fel,
+                a paintEvent() (festés esemény) pedig a hangyák színezéséért felel.
+            </para>
+            <para>
+                Az Antthread osztály hasonló az Antwin-hez, csak a tulajdonságok ki vannak egészítve. Az evaporation (párolgás) a hangyák számát tárolja egy cellában. Puklikus függvényeink a run(), a finish()
+                és a isRunning() ami egy igaz vagy hamis értéket adhat vissza. Nem publikus a setPheromon() ami a feromonok beállítását szolgálja, MoveAnts() ami a hanygák mozgatásáért felel és a newDir() ami
+                az irányt adja meg.
+            </para>     
+    </section>        
+    <section>
+        <title>Java életjáték</title>
+        <para>
+            Írd meg Java-ban a John Horton Conway-féle életjátékot, 
+            valósítsa meg a sikló-kilövőt!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Conway/eletjatek.java">https://github.com/LadanyiBalazs/Prog1/blob/master/Conway/eletjatek.java</link>                              
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: John Horton Conway életjátékának szabályai: van egy élettér, ami cellákból áll és sejtek lakják, minden cella egy sejt.
+            Egy sejt akkor él ha legalább 2 éső szomszédja van, ha annál kevesebb, meghal. Egy halott sejt akkor éled fel, ha 3 élő szomszédja lesz.
+            A sejtek egy halmazát alakzatnak hívjuk, az egyik ilyen a sikló. A sikló egy adott irányba halad, amit a siklóágyú lő ki a végtelenbe.
+            A programot egy objektumként írjuk meg, amit később a main függvényben hívunk meg, paraméterként pedig átatjuk az objektum konstruktorának az oszlop és sor méretet.
+            Fordításnál és futtatásnál a szövegkódolást UTF 8-ra kell állítani. javac -encoding UTF-8 eletjatek.java, -java eletjatek
+        </para>       
+            <para>
+                Az "S" billentyűvel képet készíthetünk a sejttérről. Az "N"-el növehni tudjuk a sejtek méretét, "K" val pedig csökkenteni. A "G"-vel gyorsítjuk, az "L"-el pedig lassítjuk a szimulációt.
+                Az egér jobb klikkjével felélesztjük vagy megöljük a sejtet.
+            </para>     
+    </section>        
+    <section>
+        <title>Qt C++ életjáték</title>
+        <para>
+            Most Qt C++-ban!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/tree/master/Conway/Eletjatek">https://github.com/LadanyiBalazs/Prog1/tree/master/Conway/Eletjatek</link>                              
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A szabályok ugyan azok, mint java-ban. A fordítás lesz különböző, mert a QT keretrendszert használunk. A <command>qmake -project</command> parancsal legeneráljuk
+            a .pro file-t. Majd ezt futtatjuk, ami legenerálja a make file-t. Végül a <command>make</command> parancsal fordítjuk le a programunkat. Futtatni pedig <command>./eletjatek</command> parancsal tudjuk.
+        </para> 
+<para>
+<figure>
+	<title>Életjáték</title>
+	<mediaobject>
+		<imageobject>
+		<imagedata fileref="img/elet.png" format="PNG"/>
+		</imageobject>
+	</mediaobject>
+	</figure>
+</para>           
+    </section>        
+    <section>
+        <title>BrainB Benchmark</title>
+        <para>
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href=""></link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A program célja, az e-sportolók tesztelése. Az egérgombot lenyomva kell tartani és követni kell a négyzeten lévő kört. Minél tovább tudjuk benne tartani az
+            egerünket annál több négyzet jelenik meg hogy bezavarjon. Ha elveszítjuk eltünnek a zavaró négyzetek és lassul a mozgás. 
+        </para>    
+            <para>
+                fordítás, futtatás: <command>/home/.../qmake brainB.pro</command>, <command>make</command>, <command>./brainB</command>
+            </para>  
+<para>
+<figure>
+	<title>BrainB működés közben - Bátfai Norbert</title>
+	<mediaobject>
+		<imageobject>
+		<imagedata fileref="img/brain.png" format="PNG"/>
+		</imageobject>
+	</mediaobject>
+	</figure>
+</para>      
+    </section>        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                

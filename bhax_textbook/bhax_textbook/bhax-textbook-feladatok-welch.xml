@@ -1,0 +1,244 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Welch!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title>Első osztályom</title>
+        <para>
+            Valósítsd meg C++-ban és Java-ban az módosított polártranszformációs algoritmust! A matek háttér 
+            teljesen irreleváns, csak annyiban érdekes, hogy az algoritmus egy számítása során két normálist
+            számol ki, az egyiket elspájzolod és egy további logikai taggal az osztályban jelzed, hogy van vagy
+            nincs eltéve kiszámolt szám.
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:       <link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/polargen/">https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/polargen/</link>,<link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/source/kezdo/elsojava/PolarGen.java">https://sourceforge.net/p/udprog/code/ci/master/tree/source/kezdo/elsojava/PolarGen.java</link>         
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: Java-ban szükségünk lesz az OpenJDK 6-os verzióra. A JDK src.zip állomáyban a java/util/Random.java forrásban láthatjuk, hogy a Sun programozói is hasonlóan
+            oldották meg a feladatot. C++-ban pedig fontos, hogy egy számítási lépés két normális elosztású számot állít elő,
+            vagyis minden második híváskor kell számolnunk, többinél pedig az előző eredményt visszadnunk, ami sokban könnyíti munkánkat.
+        </para>
+    </section>        
+
+    <section>
+        <title>LZW</title>
+        <para>
+            Valósítsd meg C-ben az LZW algoritmus fa-építését!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:       <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/lzw.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/lzw.cpp</link>         
+        </para>
+        <para>
+            Az LZW egy veszteségmentes tömörítés algoritmus. A tömörítési eljárásnak az alapja az, hogy a kódoló csak egy szótárbeli indexet küld ki.
+            A fa minden csomópontjának 2 részfája lehet, ami a bal és a jobb részfa. Megadunk a programnak egy szöveges fájlt, amit a az lebont binfa szerkezetre, majd ezt kiadja egy általunk megadott kimenetre.
+            Létrehozzuk a gyökeret, majd a gyerekeket balra és jobbra. Ahoz, hogy megtudjuk mennyi származtatás van, megnézzük az átlagos ághosszát, ami a szórás összege, valamint az átlagot és az mélységet.
+            inicializálnunk kell az átla() függvényt és a szórást. A kiir függvény a fabejárásér felel. Végül felszabadítjuk az elemeket.
+            Welch 8 bites sorozatát kódolja 12 bites kóddá. Inorder fabejárást alkalmazunk, ami azt jelenti, hogy a bal oldalt olvassuk be először, majd a rootot, és végül a jobb oldalt.
+        </para>
+    </section>        
+        
+    <section>
+        <title>Fabejárás</title>
+        <para>
+            Járd be az előző (inorder bejárású) fát pre- és posztorder is!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:<link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/ziv/z_post.c#l229">https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/ziv/z_post.c#l229</link><link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/ziv/z_pre.c">https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/ziv/z_pre.c</link>
+        </para>
+        <para>
+            Az előző feladat után, itt meg kell változtatnunk a fabejárás sorrendjét.Először preorderre, ami annyit takar hogy mostmár nem a bal oldallal kezdünk hanem a rootal, és utána jön a bal és a jobb oldal.
+            Majd átírjuk postorderre is, ahol pedig a bal oldallal kezdünk, a jobb oldallal folytatjuk, és a rootal fejezzük be. Minden bejárást külön-külön kell futtatni.
+        </para>
+<programlisting language="c"><![CDATA[
+//inorder
+void kiir (Csomopont * elem, std::ostream & os)
+{
+if (elem != NULL)
+{
+++melyseg;
+for (int i = 0; i < melyseg; ++i)
+os << "---";
+kiir ( elem->nullasGyermek (), os);
+os << elem->getBetu () << "(" << melyseg - 1 << ")" << std:: ←-
+endl;
+kiir ( elem->egyesGyermek (), os);
+--melyseg;
+}
+Univerzális programozás 65 / 92
+}
+output:
+------0(1)
+---------0(2)
+------------0(3)
+---------------1(4)
+------------1(3)
+---------------1(4)
+------------------0(5)
+---/(0)
+---------1(2)
+------------0(3)
+------------1(3)
+------1(1)
+---------0(2)
+------------1(3)
+---------1(2)
+depth = 5
+mean = 3.33333
+var = 1.0328
+//preorder
+void kiir (Csomopont * elem, std::ostream & os)
+{
+if (elem != NULL)
+{
+++melyseg;
+for (int i = 0; i < melyseg; ++i)
+os << "---";
+os << elem->getBetu () << "(" << melyseg - 1 << ")" << std:: ←-
+endl;
+kiir ( elem->nullasGyermek (), os);
+kiir ( elem->egyesGyermek (), os);
+--melyseg;
+}
+}
+output:
+---/(0)
+------0(1)
+---------0(2)
+------------0(3)
+---------------1(4)
+------------1(3)
+---------------1(4)
+------------------0(5)
+---------1(2)
+------------0(3)
+------------1(3)
+Univerzális programozás 66 / 92
+------1(1)
+---------0(2)
+------------1(3)
+---------1(2)
+depth = 5
+mean = 3.33333
+var = 1.0328
+//postorder
+void kiir (Csomopont * elem, std::ostream & os)
+{
+if (elem != NULL)
+{
+++melyseg;
+for (int i = 0; i < melyseg; ++i)
+os << "---";
+kiir ( elem->nullasGyermek (), os);
+kiir ( elem->egyesGyermek (), os);
+os << elem->getBetu () << "(" << melyseg - 1 << ")" << std:: ←-
+endl;
+--melyseg;
+}
+}
+output:
+------0(1)
+---------0(2)
+------------0(3)
+---------------1(4)
+------------1(3)
+---------------1(4)
+------------------0(5)
+---------1(2)
+------------0(3)
+------------1(3)
+------1(1)
+---------0(2)
+------------1(3)
+---------1(2)
+---/(0)
+depth = 5
+mean = 3.33333
+var = 1.0328]]></programlisting>
+    </section>        
+                        
+    <section>
+        <title>Tag a gyökér</title>
+        <para>
+            Az LZW algoritmust ültesd át egy C++ osztályba, legyen egy Tree és egy beágyazott Node
+            osztálya. A gyökér csomópont legyen kompozícióban a fával!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:                <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/lzw.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/lzw.cpp</link>
+        </para>
+        <para>
+            Az LZWBinFa-t bele kell ültetni egy C++ osztályba, amihez kellenifog nekünk egy LZWBinFa osztály. Létrehozunk egy beágyazott csomópont osztályt, amibe belerakjuk a fa egy csomópontjának jellemzését.
+            Ezt azért csináljuk, mert a fa részeként szeretnénk vele számolni, ebből adódóan nem szánunk neki külön helyet.
+            Ebben az osztályban a fa gyökere nem egy pointer, hanem egy objektum, ami a "/" szimbólumot tartalmazza, maga a fa viszont pointer, és az LZW fa azon csomópontjára mutat, amit az LZW algoritmus mond.
+            Ez a konstruktor ráállítja a gyökérre a fa mutatót. Túl kell terhelnünk a  operátort, hogy beadhassuk a fának a b inputot, ami "0" és "1" karakter lehet.
+        </para>
+    </section>
+    
+    <section>
+        <title>Mutató a gyökér</title>
+        <para>
+            Írd át az előző forrást, hogy a gyökér csomópont ne kompozícióban, csak aggregációban legyen a 
+            fával!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása:  <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/z3a8.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/z3a8.cpp</link>
+        </para>
+        <para>
+            Az előző forrásban a gyökeret objektumként kezeltük, most azonban mutató lesz ez is, a fával együtt. Mindenhol törölnünk kell a referencia jeleket,
+            mivel mostmár referenciaként adjuk át a gyökeret.
+	</para>
+<programlisting language="c"><![CDATA[LZWBinFa ()
+{
+gyoker = new Csomopont();
+fa = gyoker;
+}]]></programlisting>
+	<para>
+	 A szabadit() függvénybe mutatót kell állítanunk a gyermekekre.
+        </para>
+	<para>
+	<programlisting language="c"><![CDATA[~LZWBinFa ()
+{
+szabadit (gyoker->egyesGyermek ());
+szabadit (gyoker->nullasGyermek ());
+szabadit (gyoker);
+}]]></programlisting>
+	</para>
+    </section>                     
+
+    <section>
+        <title>Mozgató szemantika</title>
+        <para>
+            Írj az előző programhoz mozgató konstruktort és értékadást, a mozgató konstruktor legyen a mozgató
+            értékadásra alapozva!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása:  <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/mozgato.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/mozgato.cpp</link>
+        </para>
+        <para>
+            Létrehozunk egy operátort, ami lemásolja saját magát, abban az esetben ha nem a gyökeret tartalmazza. A rekurzioIndutasa függvény indítja el a rekurziót, ha van nullás gyermeke akkor azon fut tovább, ha van
+            egyes gyermeke akkor arra is meghívásra kerül. A fő eljárást maga a rekurzioAzAgakon függvény végzi el, ez fut át az összes ágon, és létrehozza az új csomópontokat.
+            Az alap BinFa másolódik a BinFa2-be.
+        </para>
+    </section>                     
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                

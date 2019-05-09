@@ -1,0 +1,176 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Caesar!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title><type>double **</type> háromszögmátrix</title>
+        <para>
+           
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/double.c">https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/double.c</link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A háromszögmátrixunk 5 sorból fog állni. A malloc függvényt használjuk, amivel megvizsgáljuk, hogy van-e elég hely a memóriában a műveleteknek, és ez egy pointert fog nekünk visszaadni.
+            Ha nincs elég memória a program kilép, és 1-es hibakódot ad ki. A for cikluson addig megyünk amég a sorok számán végig nem érünk, ami a mi esetünkben 5. Mindíg egyel arrébb mutatunk a memóriában,
+            minden sorba egyel több helyet foglalunk le. Kiírjuk a tm[] tömb első elemét, és elkészítjük a for ciklus segítségével a mátrixunkat, majd ki is íratjuk.
+        </para>  
+<para>
+<figure>
+	<title>Háromszög - Bátfai Norbert</title>
+	<mediaobject>
+		<imageobject>
+		<imagedata fileref="img/double.jpg" format="JPG"/>
+		</imageobject>
+	</mediaobject>
+	</figure>
+</para>          
+    </section>        
+    <section>
+        <title>C EXOR titkosító</title>
+        <para>
+            Írj egy EXOR titkosítót C-ben!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:  <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/exor.c">https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/exor.c</link>              
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A C exor titkosító a megadott kulcsunk alapján, összekeveri a szövegben lévő karaktereket, és egy értelmetlen "szöveget" ad vissza.
+            A while() ciklusban beolvassuk az inputfájlt, majd a for() ciklus végigmegy a beolvasott szöveget és exorosan titkosítja a kulcs alapján. Végül ezt kiadjuk az outputnak.
+        </para>    
+	<para> Tutorált: Nagy László Mihály</para>
+    </section>        
+    <section>
+        <title>Java EXOR titkosító</title>
+        <para>
+            Írj egy EXOR titkosítót Java-ban!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:  <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/exor.java">https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/exor.java</link>              
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A Java és C titkosítő közt nincs nagy különbség. Lényegében csak annyi, hogy itt az exor függvényt classba kell rakni.
+	</para>
+<programlisting language="c"><![CDATA[public class ExorTitkosito {
+    
+    public ExorTitkosito(String kulcsSzoveg,
+            java.io.InputStream bejovoCsatorna,
+            java.io.OutputStream kimenoCsatorna)
+            throws java.io.IOException {
+        
+        byte [] kulcs = kulcsSzoveg.getBytes();
+        byte [] buffer = new byte[256];
+        int kulcsIndex = 0;
+        int olvasottBajtok = 0;
+
+        while((olvasottBajtok =
+                bejovoCsatorna.read(buffer)) != -1) {
+            
+            for(int i=0; i<olvasottBajtok; ++i) {
+                
+                buffer[i] = (byte)(buffer[i] ^ kulcs[kulcsIndex]);
+                kulcsIndex = (kulcsIndex+1) % kulcs.length;
+                
+            }
+            
+            kimenoCsatorna.write(buffer, 0, olvasottBajtok);
+            
+        }
+        
+    }]]></programlisting>
+	<para>       
+    Ezután a mainbe meghívjuk a classt és a végén elkapjuk a try-catch blokkal a hibákat, ha van.
+        </para> 
+           <programlisting language="c"><![CDATA[public static void main(String[] args) {
+        
+        try {
+            
+            new ExorTitkosito(args[0], System.in, System.out);
+            
+        } catch(java.io.IOException e) {
+            
+            e.printStackTrace();
+            
+        }
+        
+    }
+    
+}]]></programlisting>
+    </section>        
+    <section>
+        <title>C EXOR törő</title>
+        <para>
+            Írj egy olyan C programot, amely megtöri az első feladatban előállított titkos szövegeket!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:<link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/toro.c">https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/toro.c</link>
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A program abc sorrendbe végigmegy az összes lehetőségen, hogy megtalálja a megfelelőt.
+            Közbe folyamatosan ellenőrizzük, hogy a szövegünk megfelel-e már a lista_lehet funkción belül megtalálható szavaknak.
+            Először megadjuk a kulcsméretet, az olvasási buffert és a beolvasó titkos szöveg maximális méretét. Includoljuk a megfelelő könyvtárakat. Az átlagos_szohossz megadja, mekkora a szövegben előforduló átlagos szóhossz, és et vissza adja egy double változóban.
+            A tiszta_lehet funkció abban segít, hogy ne kelljen megnézni az összes lehetséges kulcsot. Az exor függvény töri fel a szöveget, az exor_tores pedig nézi, hogy sikerült-e.
+            A mainbe meghívjuk a függvényeket, beolvassuk a titkosított szöveget, majd végigmegyünk az összes lehetséges kulcson. Közben a tiszta_lehet funkió ellenőrzi, hogy tiszta-e már a szövegünk.
+        </para>            
+    </section>        
+    <section>
+        <title>Neurális OR, AND és EXOR kapu</title>
+        <para>
+            R
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://youtu.be/Koyw6IH5ScQ">https://youtu.be/Koyw6IH5ScQ</link>
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R</link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A neuron egy olyan agysejt, ami összegyűlyti az elektromos jeleket, feldolgozza, majd szétküldi. Akkor küldi tovább, hogyha összegyült nála, annyi jel, ami meghaladja a küszöböt.
+            Mi a kapuval foglalkozunk, ami az aktivációs függvény. Az OR és az AND kapu teljesen független egymástól, így beírhatjuk mind a kettő is, és ugyan azon hálózaton két kimenete lesz.
+            Az EXOR-nál csak át kell írni az OR-t vagy az ORAND-et EXOR-ra. Beállíthatjuk a kódba, hogy a rejtett részeket is mutassa, és akkor sokkal részletesebb ábrát kapunk, amit ezzel a kóddal tehetünk meg: 
+            <command>hidden=c(6,4,6)</command>.
+        </para> 
+<para>
+<figure>
+	<title>Igazságtábla</title>
+	<mediaobject>
+		<imageobject>
+		<imagedata fileref="img/exor.png" format="PNG"/>
+		</imageobject>
+	</mediaobject>
+	</figure>
+</para>           
+    </section>        
+    <section>
+        <title>Hiba-visszaterjesztéses perceptron</title>
+        <para>
+            C++
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/Perceptron.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Ceasar/Perceptron.cpp</link>       
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A perceptron gépi tanulást végző algoritmus, ami képes arra, hogy két lineárisan szétválasztható bemeneti halmazt szétválaszzon. Egy lineáris kombinációt valósít meg, ami segíti a hibaképzést.
+        </para> 
+    </section>        
+        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                
