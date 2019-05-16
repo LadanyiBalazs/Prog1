@@ -1,0 +1,271 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Welch!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title>Első osztályom</title>
+        <para>
+            Valósítsd meg C++-ban és Java-ban az módosított polártranszformációs algoritmust! A matek háttér 
+            teljesen irreleváns, csak annyiban érdekes, hogy az algoritmus egy számítása során két normálist
+            számol ki, az egyiket elspájzolod és egy további logikai taggal az osztályban jelzed, hogy van vagy
+            nincs eltéve kiszámolt szám.
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:       <link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/polargen/">https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/polargen/</link>,<link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/source/kezdo/elsojava/PolarGen.java">https://sourceforge.net/p/udprog/code/ci/master/tree/source/kezdo/elsojava/PolarGen.java</link>         
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: Java-ban szükségünk lesz az OpenJDK 6-os verzióra. A JDK src.zip állomáyban a java/util/Random.java forrásban láthatjuk, hogy a Sun programozói is hasonlóan
+            oldották meg a feladatot. C++-ban pedig fontos, hogy egy számítási lépés két normális elosztású számot állít elő,
+            vagyis minden második híváskor kell számolnunk, többinél pedig az előző eredményt visszadnunk, ami sokban könnyíti munkánkat.
+        </para>
+<para>
+A feladatban szereplő polártranszformációval random számokat tudunk kiszámolni, ami annyira elterjedt algoritmus, hogy a java random szám generátora is ezt használja. 
+</para>
+<para>
+C++-ban szükségünk lesz egy osztályra, amiben elkészítjük a random számokat. Egy public és egy private része van. A public rész elemei elérhetőek az osztályon kívül is, még a private rész elemei csak az osztályon belül érhetőek el. A PolarGen konstruktor akkor hajtódik végre mikor létrehozzuk az objektumokat. A destruktor pedig a program futása végén hajtódik végre, mind a kettő csak egyszer. A kovetkezo() függvény a randok számokat fogja nekünk kiszámolni. A konstruktor ad egy értéket a nincsTarolt-nak, ami egy változó, és meghívja a strand() függvényt, ami random számokat generál. A main()-ben létrehozunk egy PolarGen típusú változót, és generálunk 10 random számot.
+</para>
+<para>
+Java-ban nincs sok változás, a változók és osztálynevek megegyeznek, és a forrás is rövidebb. Az egész forrás egy class része. C++-hoz képest itt nem tudjuk tömbösíteni a private és public elemeket, ezért ki kell írni. A többi ugyan úgy működik mint C++-ban. 
+ </para>
+</section>        
+
+    <section>
+        <title>LZW</title>
+        <para>
+            Valósítsd meg C-ben az LZW algoritmus fa-építését!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:       <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/lzw.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/lzw.cpp</link>         
+        </para>
+        <para>
+            Az LZW egy veszteségmentes tömörítés algoritmus. A tömörítési eljárásnak az alapja az, hogy a kódoló csak egy szótárbeli indexet küld ki.
+            A fa minden csomópontjának 2 részfája lehet, ami a bal és a jobb részfa. Megadunk a programnak egy szöveges fájlt, amit az lebont binfa szerkezetre, majd ezt kiadja egy általunk megadott kimenetre.
+            Létrehozzuk a gyökeret, majd a gyerekeket balra és jobbra. Ahoz, hogy megtudjuk mennyi származtatás van, megnézzük az átlagos ághosszát, ami a szórás összege, valamint az átlagot és az mélységet.
+            inicializálnunk kell az átla() függvényt és a szórást. A kiir függvény a fabejárásér felel. Végül felszabadítjuk az elemeket. 
+            Inorder fabejárást alkalmazunk, ami azt jelenti, hogy a bal oldalt olvassuk be először, majd a rootot, és végül a jobb oldalt.
+        </para>
+<para>
+A forrás elején létre kell hoznunk egy struktúrát, amely 3 részből áll, egy érték és annak gyermekeire mutató mutatókból. A typedef segítségével meg tudunk adni ennek a struktúrának bármilyen nevet, amivel hivatkozunk rá. Az uj_elem() függvénnyel foglalunk helyet a binfa típusú változóknak, majd adunk egy ide mutató mutatót. A szükséges függvényeket deklaráljuk, majd a mainbe létrehozzuk a gyökeret, aminek az értékét "/"-re állítjuk. Mivel még nincs semelyik oldali gyermek, a mutatónak NULL értéket adunk. A while ciklus alkotja meg magát a binfát. Beolvassa a standard inputról a bemenetet, bitenként, ha ez 0, akkor megnézi van-e nullás gyermeke, ha nincs hoz létre egyet, majd a fa mutatót visszaállítjuk a gyökérre. Ha ez nem 0, akkor megnézzük van-e jobb oldali gyermeke, ha nincs hozunk neki létre egyet, és a mutatót megint visszaállítjuk a gyökérre. De ha van akkor a mutató a jobb oldali gyermekre mutat. A main végén íratjuk ki a binfát, és számolunk ki hozzá adatokat. A kiir függvény a bináris fát írja ki a standard outputra. Ezt most inorder bejárással tesszük meg. A free függvénnyel felszabadítjuk a lefoglalt tárterületet. Az ratlag függvény egy pointert kap, ami ha nem NULL, akkor növeljük a meyseg nevű globális változónkat, majd meghívjuk a függvényt arra a gyermekre amire a pointer mutat. Az rszoras függvény annyiban különbözik az előzőtől, hogy itt a szórásösszeget adjuk meg, ami a mélység és az áltag különbségének a négyzete.
+</para>
+    </section>        
+        
+    <section>
+        <title>Fabejárás</title>
+        <para>
+            Járd be az előző (inorder bejárású) fát pre- és posztorder is!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:<link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/ziv/z_post.c#l229">https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/ziv/z_post.c#l229</link><link xlink:href="https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/ziv/z_pre.c">https://sourceforge.net/p/udprog/code/ci/master/tree/source/labor/ziv/z_pre.c</link>
+        </para>
+        <para>
+            Az előző feladat után, itt meg kell változtatnunk a fabejárás sorrendjét.Először preorderre, ami annyit takar hogy mostmár nem a bal oldallal kezdünk hanem a rootal, és utána jön a bal és a jobb oldal.
+            Majd átírjuk postorderre is, ahol pedig a bal oldallal kezdünk, a jobb oldallal folytatjuk, és a rootal fejezzük be. Minden bejárást külön-külön kell futtatni.
+        </para>
+<programlisting language="c"><![CDATA[
+//inorder
+void kiir (Csomopont * elem, std::ostream & os)
+{
+if (elem != NULL)
+{
+++melyseg;
+for (int i = 0; i < melyseg; ++i)
+os << "---";
+kiir ( elem->nullasGyermek (), os);
+os << elem->getBetu () << "(" << melyseg - 1 << ")" << std:: ←-
+endl;
+kiir ( elem->egyesGyermek (), os);
+--melyseg;
+}
+Univerzális programozás 65 / 92
+}
+output:
+------0(1)
+---------0(2)
+------------0(3)
+---------------1(4)
+------------1(3)
+---------------1(4)
+------------------0(5)
+---/(0)
+---------1(2)
+------------0(3)
+------------1(3)
+------1(1)
+---------0(2)
+------------1(3)
+---------1(2)
+depth = 5
+mean = 3.33333
+var = 1.0328
+//preorder
+void kiir (Csomopont * elem, std::ostream & os)
+{
+if (elem != NULL)
+{
+++melyseg;
+for (int i = 0; i < melyseg; ++i)
+os << "---";
+os << elem->getBetu () << "(" << melyseg - 1 << ")" << std:: ←-
+endl;
+kiir ( elem->nullasGyermek (), os);
+kiir ( elem->egyesGyermek (), os);
+--melyseg;
+}
+}
+output:
+---/(0)
+------0(1)
+---------0(2)
+------------0(3)
+---------------1(4)
+------------1(3)
+---------------1(4)
+------------------0(5)
+---------1(2)
+------------0(3)
+------------1(3)
+Univerzális programozás 66 / 92
+------1(1)
+---------0(2)
+------------1(3)
+---------1(2)
+depth = 5
+mean = 3.33333
+var = 1.0328
+//postorder
+void kiir (Csomopont * elem, std::ostream & os)
+{
+if (elem != NULL)
+{
+++melyseg;
+for (int i = 0; i < melyseg; ++i)
+os << "---";
+kiir ( elem->nullasGyermek (), os);
+kiir ( elem->egyesGyermek (), os);
+os << elem->getBetu () << "(" << melyseg - 1 << ")" << std:: ←-
+endl;
+--melyseg;
+}
+}
+output:
+------0(1)
+---------0(2)
+------------0(3)
+---------------1(4)
+------------1(3)
+---------------1(4)
+------------------0(5)
+---------1(2)
+------------0(3)
+------------1(3)
+------1(1)
+---------0(2)
+------------1(3)
+---------1(2)
+---/(0)
+depth = 5
+mean = 3.33333
+var = 1.0328]]></programlisting>
+    </section>        
+                        
+    <section>
+        <title>Tag a gyökér</title>
+        <para>
+            Az LZW algoritmust ültesd át egy C++ osztályba, legyen egy Tree és egy beágyazott Node
+            osztálya. A gyökér csomópont legyen kompozícióban a fával!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:                <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/lzw.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/lzw.cpp</link>
+        </para>
+        <para>
+            Az LZWBinFa-t bele kell ültetni egy C++ osztályba, amihez kellenifog nekünk egy LZWBinFa osztály. Létrehozunk egy beágyazott csomópont osztályt, amibe belerakjuk a fa egy csomópontjának jellemzését.
+            Ezt azért csináljuk, mert a fa részeként szeretnénk vele számolni, ebből adódóan nem szánunk neki külön helyet.
+            Ebben az osztályban a fa gyökere nem egy pointer, hanem egy objektum, ami a "/" szimbólumot tartalmazza, maga a fa viszont pointer, és az LZW fa azon csomópontjára mutat, amit az LZW algoritmus mond.
+            Ez a konstruktor ráállítja a gyökérre a fa mutatót. Túl kell terhelnünk a  operátort, hogy beadhassuk a fának a b inputot, ami "0" és "1" karakter lehet.
+        </para>
+<para>
+A fa mutatót a gyökér elem memóriacímére állítjuk. Aztán hívjuk a C-ben már megírt szabadít függvényt. túl kell terhelnünk az operátort, így tudjuk módosítani, hogy mit csináljon, és a saját típusainkat tudjuk így kezelni. Az operátor segítségével beleshifteljük az elemeket a fába. Ha nullát kap és nincs még nullás gyermeke, akkor létrehozunk neki egyet. Lefoglalunk tárterületet a new-val és az ujNullasGyermek() függvény belefűzi a fába. Egyesnél is ugyan ezt csináljuk, emihez megvan az ujEgyesGyermek() függvényünk is. Ha valamelyiknek már létezik gyermeke, akkor a mutató arra a gyermekre fog mutatni. Kimenetet és egy LZWBINFA objektumot adunk át az operátorral. meghívjuk az objektumhoz tartozó kiir függvényt. Az osztályon kívül definiáljuk azokat a függvényeket, amiket az osztályon belül deklaráltunk. Ha nem megfelelő módun futtatjuk a programot, hibaüzenetet dobunk. A main-ben megnézzük, hogy elég argumentum lett-e megadva az felhasználó által, és helyesen lett e beírva a futtatási parancs. Ha nem akkor kiírjuk a standard outputba a megfelelő formátumot. A b változóba beolvassuk a bemenetet bájtonként, és létrehozzuk az LZWBINFA objektumunkat. A while ciklusok bedolgozzák a bemenetet, és felépítik a bináris fát. Végül a bináris fát beleshifteljük a kimeneti fájlba, a hozzá tartozó mélység, átlag és szórás értékekkel.
+</para>
+    </section>
+    
+    <section>
+        <title>Mutató a gyökér</title>
+        <para>
+            Írd át az előző forrást, hogy a gyökér csomópont ne kompozícióban, csak aggregációban legyen a 
+            fával!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása:  <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/z3a8.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/z3a8.cpp</link>
+        </para>
+        <para>
+            Az előző forrásban a gyökeret objektumként kezeltük, most azonban mutató lesz ez is, a fával együtt. Mindenhol törölnünk kell a referencia jeleket,
+            mivel mostmár referenciaként adjuk át a gyökeret.
+	</para>
+<programlisting language="c"><![CDATA[LZWBinFa ()
+{
+gyoker = new Csomopont();
+fa = gyoker;
+}]]></programlisting>
+	<para>
+	 A szabadit() függvénybe mutatót kell állítanunk a gyermekekre.
+        </para>
+	<para>
+	<programlisting language="c"><![CDATA[~LZWBinFa ()
+{
+szabadit (gyoker->egyesGyermek ());
+szabadit (gyoker->nullasGyermek ());
+szabadit (gyoker);
+}]]></programlisting>
+	</para>
+    </section>                     
+
+    <section>
+        <title>Mozgató szemantika</title>
+        <para>
+            Írj az előző programhoz mozgató konstruktort és értékadást, a mozgató konstruktor legyen a mozgató
+            értékadásra alapozva!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása:  <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/mozgato.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Welch/mozgato.cpp</link>
+        </para>
+        <para>
+            A tag a gyökér kódon módosításokat végezve csináljuk meg a mozgatókonstruktort. A paraméterként átadott fa gyökerének az elemit átadjuk az üres fának, és a mozgatott fa elemit kinullázzuk. A move függvény jobértékké teszi az átadott argumentumot, amivel meghívjuk a mozgató értékadást, majd kiírjuk a fát. Ha az eredeti binfát is ki akarnánk írni, az nem menne mert azt kinulláztuk. 
+        </para>
+<programlisting language="c"><![CDATA[
+LZWBinFa binFa2 = std::move(binFa);
+kiFile << binFa2;
+kiFile << "depth = " << binFa2.getMelyseg () << std::endl;
+kiFile << "mean = " << binFa2.getAtlag () << std::endl;
+kiFile << "var = " << binFa2.getSzoras () << std::endl;]]></programlisting>
+	<para>
+	A feladat mutatóval való megoldása sokkal egyszerűbb. A mozgató konstruktorban meghívjuk az értékadást. Kinullázzuk azokat a mutatókat ahova az eredeti fáinkat akartuk tenni, majd meghívjuk a mozgató értékadást. Megcseréljük a célfa és a forrásfa gyökerének értékét, a mozgató értékadásban. Így a forrás fát ki is nullázzuk. Változtatnunk kell még a destruktoron, hogy működjön a kód. 
+	</para>
+<programlisting language="c"><![CDATA[
+LZWBinFa ()
+{
+szabadit(gyoker);
+]]></programlisting>
+    </section>                     
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>     

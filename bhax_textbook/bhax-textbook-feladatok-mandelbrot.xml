@@ -1,0 +1,221 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Mandelbrot!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title>A Mandelbrot halmaz</title>
+        <para>
+                
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:     <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Mandelbrot/halmaz.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Mandelbrot/halmaz.cpp</link>                
+        </para>
+<para>
+A mandelbrot halmaz azokból a c komplex számokból áll, amelyekre az alábbi sorozat nem divergál: x1 := c és xn+1=(xn)2+c. Ezzel a programmal elkészítjük a mandelbrót halmaz kétdimenziós ábráját. A fordításhoz szükségünk van egy libpng könyvtárhoz, és includolnunk kell a png++/png.hpp header-t. A könyvtár letöltéséhez használandó parancs: sudo apt-get install libpng++-dev, fordításnál pedig szükségünk van a -lpng kapcsolóra.
+</para>
+<para>
+futtatásnál adjuk meg, hogy melyik fájlba szeretnénk elmenteni a képet. Ha ezt nem tesszük meg akkor kiírunk egy hibaüzenetet, a program helyes használatáról. Először megadjuk az értelmezési tartományt, és érték készletet, majd a kép mérteit. Meg kell határoznunk azoknak a lépéseknek a nagyságát, amivel végigmegyünk a koordináta rendszeren. Amin végig is megyünk 2 egymásba ágyazott for ciklussal. A komplex számokat nem tudjuk egy szimpla számegyenesen tárolni, ugyanis kell egy második tengely amire a képzetes részeket tesszük, ezért kell a koordináta rendszer. Magát a halmazt őgy számoljuk ki, hogy végigmegyünk az értelmezési tartomány összes elemén, és minden iterációban megadjuk a c számot, és kiszámoljuk hozzá a z értékeket. Ezt addig csináljuk, amég a z szám négyzete nem lesz kisebb 4-nél. Ha hamarabb elérjük az iterációs határt, akkor megkapjuk a Mandelbrot halmazt. Ezt már csak bele kell arknuk a képfáljba, amit megadunk a futtatásnál.
+</para>
+<para>
+<figure>
+	<title>Mandelbrot halmaz</title>
+	<mediaobject>
+		<imageobject>
+		<imagedata fileref="img/mandel.png" format="PNG"/>
+		</imageobject>
+	</mediaobject>
+	</figure>
+</para>
+    </section>        
+        
+    <section>
+        <title>A Mandelbrot halmaz a <filename>std::complex</filename> osztállyal</title>
+        <para>
+                
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:    <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Mandelbrot/complex.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Mandelbrot/complex.cpp</link>            
+        </para>
+<para>
+Az előző feladatot fejlesztjük tovább, megadott paraméterekkel. A complex library segítségével a gépünk képes kezelni nekünk a számokat, ezért 2 változó helyett elég egyet használnunk. Az első különbséggel akkor találkozunk, mikor a felhasználó megadhatja a kép attribútutmait, vagy ha kihagyja, akkor az alapértelmezettel folytatjuk. A stringet át kell alakítanunk int és double típusra, amit az atoi és az atof függvény segítségével teszünk meg. Megadjuk a kép értékeit, majd végigmegyünk a két for ciklussal a koordinátákon. Az  értékek most el fognak térni az előzőtől, így egy színesebb képet kapunk. Ez után ekzdjük el használni a complex típust, ami double-t tartalmaz, vagyis a szám valós és képzetes részét. Utána ugyan úgy kiszámoljuk a mandelbrot halmaz elemeitc és z változók segítségével. A while-ban lévő abs az abszolút értéket adja meg. A képzett számok beírhatók a programba mivel tudjuk kezelni a komplex számokat. A program futása közben van egy százalék mérő ami jelzi, hogy hol tart a progrmamunk. A végén kiírjuk a png file-t a futtatásnál megadott file-ba a write segítségével.
+</para>
+    </section>        
+                
+    <section>
+        <title>Biomorfok</title>
+        <para>
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://youtu.be/IJMbgRzY76E">https://youtu.be/IJMbgRzY76E</link>
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/Biomorf</link>
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: Az előző feladat programján kell kisebb módosításokat végeznünk. Átneveztünk és hozzáadtunk néhány változót, így visszavetíthető a komplex számsíkon.
+            Az R pedig egy tetszőleges valós szám. Ki is kell bővíteni az argumentumtartományunkat az új változóknak megfelelően. Hozzáadunk egy komplexelő függvényt ami a reZ és imZ változókat veszi alapul.
+            Ha a z_n (amit harmadikra emeltünk, és hozzáadtuk a cc-t) nagyobb, mint az R, akkor leáll a forciklus, és az iteráció az i lesz. Ezután már csak le kell generálnunk a képet.
+        </para> 
+<para>
+<figure>
+	<title>Julia halmaz</title>
+	<mediaobject>
+		<imageobject>
+		<imagedata fileref="img/julia.jpg" format="JPG"/>
+		</imageobject>
+	</mediaobject>
+	</figure>
+</para>                       
+    </section>                     
+
+    <section>
+        <title>A Mandelbrot halmaz CUDA megvalósítása</title>
+        <para>
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása:  <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Mandelbrot/CUDA.cpp">https://github.com/LadanyiBalazs/Prog1/blob/master/Mandelbrot/CUDA.cpp</link>
+        </para>
+<para>
+Ez a program a videókártyánk CUDA magját fogja használni a mandelbrot halmaz legenerálásához. Annál gyorsabban fog generálódni, minél több CUDA magunk van.
+            Ez csak NVIDIA kértyákkal lehetséges, azért találták ki, hogy grafikai feladatokat gyorsabbal lehessen végrehajtani.Szükség lesz a libqt4-dev csomag letöltésére, amit linuxon a "sudo apt install libqt4-dev" parancsal tehetünk meg.
+            Három parancsot kell beírnunk: qmake -project - ami létrehoz egy .pro filet. Ebbe bele kell írni, hogy QT += widgets, majd erre a file-ra kiadjuk neki a qmake parancsot. 
+            Ezután tufjuk futtatni a programot, és egérrel lehet benne nagyítani is. Az n billentyű lenyomásával kiszámolhatjuk a komplex számot, ami egy részletesebb képet ad.
+</para>
+    </section>                     
+
+    <section>
+        <title>Mandelbrot nagyító és utazó C++ nyelven</title>
+        <para>
+            Építs GUI-t a Mandelbrot algoritmusra, lehessen egérrel nagyítani egy területet, illetve egy pontot
+            egérrel kiválasztva vizualizálja onnan a komplex iteréció bejárta z<subscript>n</subscript> komplex számokat!
+        </para>
+            
+        <para>
+            Megoldás forrása:  
+        </para>
+
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://bhaxor.blog.hu/2018/09/02/ismerkedes_a_mandelbrot_halmazzal">https://bhaxor.blog.hu/2018/09/02/ismerkedes_a_mandelbrot_halmazzal</link> 
+        </para>
+	<para>
+            Mandelbrot halmaz, de most bele tudunk nagyítani néhány helyen. Ehhez szükségünk lesz a libqt4-dev csomagra (sudo apt-get install libqt4-dev), valamint 4 bemeneti file-ra,
+            aminek egy mappában kell lennie. Kiadjuk a qmake -project parancsot ami csinál nekünk egy *.pro file-t, amibe bele kell írni a következőt: QT += widgets, majd futtatjuk a qmake *.pro-t, így lesz a mappában egy Makefile, és végül kiadjuk a make parancsot, ami létrehoz egy bináris file-t, ezt a szokásos módun tudjuk futtatni. Az n billentyű lenyomásával lehet javítani a kép minőségén, ami valójában kiszámolja a z értékeket a megadott területen.
+        </para>
+<para>
+A forrásunk több fájlból áll, ezért is kellet az imént olvasott procedúrát végig csinálni. Első a frakablak.h: ez egy header file, később includoljuk a programunkhoz. A QMainWindow hozza létre a programunk ablakát, a QImage hozza kétre majd a képet, a QPainter teszi lehetővé, hogy a képet színezhessük, A QMouseEvent és a QKeyEvent segít abban, hogy az egér és billentyűzet használható legyen a programban. A Frakasztal osztály teljes deklarációját a frakszal.h tartalmazza. A Q:OBJECT teszi lehetővé, hogy kezelni tudjuk a Qt C++ kiegészítőit. A protected olyan elemet tartalmaz, ami csak az osztályból érhető el. Itt vannak deklarálva a függvények. A public rész az osztályon kívülről is elérhető, viszont a private csak az osztályon belülről. 
+</para>
+<para>
+Következő a frakszal.h: ebben tároljuk a frakszal osztályt, ami kirajzolja majd nekünk a nagyított mandelbrot halmazt. Itt is includoljuk a Qt könyvtárakat akár az előbb, valamint a frakablak.h headert. Ez tartalmazza nekünk a frakablak osztályt. A FrakSzal osztály tartalmazza a FrakSzal funkciót, és az összes számunkra szükséges változót. Mind ezt private-ként teszi így csak az osztályban lehet hozzáférni.
+</para>
+<para>
+frakszal.cpp: Ebben a file-ban rajzoljuk ki a fő Mandelbrot halmazt. Includolnunk kell a frakszal.h header file-t, hogy hozzáférhessünk a FrakSzal osztályhoz, és funckióhoz. A benne lévő változók értékét meg kell változatnunk. Kirajzoljuk a halmazt, majd átatjuk a FrakAblaknak.
+</para>
+<para>
+frakablak.cpp: ebben a file-ban deklaráljuk azt az ablakot, amiben a program futni fog. 
+A PaintEvent függvény fogja nekünk kirajzolni a Mandelbrot halmazt. Az ablak 0,0 koordinátáitól kezdjük a kirajzolást. A QPainter objektumok mindíg fel kell szabadítani, ezért ezt meg is tesszük a végén az end() függvénnyel.
+A mousePressEvent azt adja meg, hogy mi történjen amikor a felhasználó kattint egyet. A QMouseEvent objektummal és a button() fügvénnyel le tudjuk kérdezni, hogy melyik gombot nyomja le a felhasználó. A bal gomb lenyomása esetén egy pixelre nagyítunk, a jobb gomb lenyomása esetén pedig kiszámoljuk a z komplex számokat. Az itt kiszámolt számokat fogja a paintEvent összekötni a for ciklussal. Az upate frissíti nekünk az ablakot. Az egér mozgását a mouseMoveEvent-el kezeljük. 
+</para>
+<para>
+A main.cpp-ben történik az egyestíés, és itt hozzuk létre a nagyításokat az előre megadott paraméterekkel. Ide QApplication headert kell importálnunk, ami lehetővé teszi, hogy grafikus felületű programokat kezeljünk. Kell nekünk egy FrakAblak típusú objektum. A show függvény, jeleníti meg nekünk az ablakot, amiben a program fut. Az exec() függvény addig fut, amég a program, majd a végén 0-val tér vissza, ha minden rendben volt. 
+</para>
+    </section>                     
+                                                                                                                                                                            
+    <section>
+        <title>Mandelbrot nagyító és utazó Java nyelven</title>
+        <para>
+Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Mandelbrot/nagyito.java">https://github.com/LadanyiBalazs/Prog1/blob/master/Mandelbrot/nagyito.java</link>
+        </para>
+	<para>
+            Az előző feladatban használt C++ nagyítót most Java-ban implementéljuk. Ehhez szükségünk van "sudo apt-get install openjdk-8-jdk"-ra.
+            Nagyításkor az egérrel választjuk ki, hogy hol nagyítsunk bele a programba. A ball klikk lenyomásával rámegyünk a Mandelbrot halmaz valamelyik részére, és nagyítunk, majd rámegyünk es másíkra,
+            és azt is nagyítjuk, és így tovább. Ha a nagyítások után veszítenénk a halmazunk pontosságából, az n gomb lenyomásával növelni tudjuk a számítások határát, így a pontosság is nő.
+            Amíg fut a program, az s billentyű lenyomásával lészíthetünk képet, amit ugyan abba a mappába ment el.
+        </para>
+     <programlisting language="c"><![CDATA[    public void pillanatfelvétel() {
+        // Az elmentendő kép elkészítése:
+        java.awt.image.BufferedImage mentKép =
+                new java.awt.image.BufferedImage(szélesség, magasság,
+                java.awt.image.BufferedImage.TYPE_INT_RGB);
+        java.awt.Graphics g = mentKép.getGraphics();
+        g.drawImage(kép, 0, 0, this);
+        g.setColor(java.awt.Color.BLUE);
+        g.drawString("a=" + a, 10, 15);
+        g.drawString("b=" + b, 10, 30);
+        g.drawString("c=" + c, 10, 45);
+        g.drawString("d=" + d, 10, 60);
+        g.drawString("n=" + iterációsHatár, 10, 75);
+        if(számításFut) {
+            g.setColor(java.awt.Color.RED);
+            g.drawLine(0, sor, getWidth(), sor);
+        }         
+        g.setColor(java.awt.Color.GREEN);
+        g.drawRect(x, y, mx, my);
+        g.dispose();        
+        // A pillanatfelvétel képfájl nevének képzése:
+        StringBuffer sb = new StringBuffer();
+        sb = sb.delete(0, sb.length());
+        sb.append("MandelbrotHalmazNagyitas_");
+        sb.append(++pillanatfelvételSzámláló);
+        sb.append("_");
+        // A fájl nevébe belevesszük, hogy melyik tartományban
+        // találtuk a halmazt:
+        sb.append(a);
+        sb.append("_");
+        sb.append(b);
+        sb.append("_");
+        sb.append(c);
+        sb.append("_");
+        sb.append(d);
+        sb.append(".png");
+        // png formátumú képet mentünk
+        try {
+            javax.imageio.ImageIO.write(mentKép, "png",
+                    new java.io.File(sb.toString()));
+        } catch(java.io.IOException e) {
+            e.printStackTrace();
+        }
+    }    
+    /**
+     * A nagyítandó kijelölt területet jelző négyzet kirajzolása.
+     */
+    public void paint(java.awt.Graphics g) {
+        // A Mandelbrot halmaz kirajzolása
+         g.drawImage(kép, 0, 0, this);
+        // Ha éppen fut a számítás, akkor egy vörös
+        // vonallal jelöljük, hogy melyik sorban tart:         
+        if(számításFut) {
+            g.setColor(java.awt.Color.RED);
+            g.drawLine(0, sor, getWidth(), sor);
+        }         
+        // A jelző négyzet kirajzolása:
+        g.setColor(java.awt.Color.GREEN);
+        g.drawRect(x, y, mx, my);
+    }
+    /**
+     * Példányosít egy Mandelbrot halmazt nagyító obektumot.
+     */
+    public static void main(String[] args) {
+        // A kiinduló halmazt a komplex sík [-2.0, .7]x[-1.35, 1.35]
+        // tartományában keressük egy 600x600-as hálóval és az
+        // aktuális nagyítási pontossággal:
+        new MandelbrotHalmazNagyító(-2.0, .7, -1.35, 1.35, 600, 255);
+    }
+}    ]]></programlisting>
+    </section>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                

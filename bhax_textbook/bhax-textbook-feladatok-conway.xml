@@ -1,0 +1,418 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Conway!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title>Hangyaszimulációk</title>
+        <para>
+            Írj Qt C++-ban egy hangyaszimulációs programot, a forrásaidról utólag reverse engineering jelleggel
+            készíts UML osztálydiagramot is!
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://bhaxor.blog.hu/2018/10/10/myrmecologist">https://bhaxor.blog.hu/2018/10/10/myrmecologist</link>
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/tree/master/Conway/Ant">https://github.com/LadanyiBalazs/Prog1/tree/master/Conway/Ant</link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat:  Fordításkor a qmake-et használjuk amit a letöltött QT keretrendszerben találhatunk. A P billentyű lenyomásával lehet pause-olni, vagyis szüneteltetni,
+            a Q lenyomásával pedig kilép a programból.
+        </para>       
+	<para>
+                futtatási parancsok:<command>-/home/.../qmake myrmecologist.pro</command> ,<command>-make</command> ,<command>./myrmecologist -w 250 -m 150 -n 400 -t 10 -p 5 -f 80 -d 0 -a 255 -i 3 -s 3 -c 22</command> 
+            </para>
+            <para>
+                Az Ant osztályba a hangya tulajdonságai vannak megadva. A két koordinátája, x és y, a dir (direction) pedig az irányt határozza meg amibe
+                tart. A + jelek azt jelölik, hogy public elérésűek, tehát az osztályon kívűlről is el lehet érni őket, valamint látszódik is osztályon kívülről. A - jellek pedig private elérésőek, tehát
+                csak az osztálon belülről lehet elérni őket. Az ants egy vektor, ami a hangyákat tárolja.
+            </para>
+            <para>
+                Az Antwin tulajdonságba az ablak mérete van megadva pixelben, szélesség és hosszúság. A cellwidth és a cellhight pedig a hangyák, vagy cellák méretét adják meg.
+                Az antThread a hangyaszámításokat végzi. A grids kirajzolja a 2 rácsot, amiből a gridlx egyet tárol. A closeEvent() (kikapcsolási esemény) meghívja az AntThread
+                osztályból a finish() (befejezés)-t ami leállítja az ablakot azzal, hogy a running-ot hamis értékre állítja. A keyPressEvent() (gomblenyomás esemény) a gombnyomásokat dolgozza fel,
+                a paintEvent() (festés esemény) pedig a hangyák színezéséért felel.
+            </para>
+            <para>
+                Az Antthread osztály hasonló az Antwin-hez, csak a tulajdonságok ki vannak egészítve. Az evaporation (párolgás) a hangyák számát tárolja egy cellában. Puklikus függvényeink a run(), a finish()
+                és a isRunning() ami egy igaz vagy hamis értéket adhat vissza. Nem publikus a setPheromon() ami a feromonok beállítását szolgálja, MoveAnts() ami a hanygák mozgatásáért felel és a newDir() ami
+                az irányt adja meg.
+            </para>     
+    </section>        
+    <section>
+        <title>Java életjáték</title>
+        <para>
+            Írd meg Java-ban a John Horton Conway-féle életjátékot, 
+            valósítsa meg a sikló-kilövőt!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/blob/master/Conway/eletjatek.java">https://github.com/LadanyiBalazs/Prog1/blob/master/Conway/eletjatek.java</link>                              
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: John Horton Conway életjátékának szabályai: van egy élettér, ami cellákból áll és sejtek lakják, minden cella egy sejt.
+            Egy sejt akkor él ha legalább 2 éső szomszédja van, ha annál kevesebb, meghal. Egy halott sejt akkor éled fel, ha 3 élő szomszédja lesz.
+            A sejtek egy halmazát alakzatnak hívjuk, az egyik ilyen a sikló. A sikló egy adott irányba halad, amit a siklóágyú lő ki a végtelenbe.
+            A programot egy objektumként írjuk meg, amit később a main függvényben hívunk meg, paraméterként pedig átatjuk az objektum konstruktorának az oszlop és sor méretet.
+            Fordításnál és futtatásnál a szövegkódolást UTF 8-ra kell állítani. javac -encoding UTF-8 eletjatek.java, -java eletjatek
+        </para>       
+            <para>
+                Az "S" billentyűvel képet készíthetünk a sejttérről. Az "N"-el növehni tudjuk a sejtek méretét, "K" val pedig csökkenteni. A "G"-vel gyorsítjuk, az "L"-el pedig lassítjuk a szimulációt.
+                Az egér jobb klikkjével felélesztjük vagy megöljük a sejtet.
+            </para>     
+    </section>        
+    <section>
+        <title>Qt C++ életjáték</title>
+        <para>
+            Most Qt C++-ban!
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://github.com/LadanyiBalazs/Prog1/tree/master/Conway/Eletjatek">https://github.com/LadanyiBalazs/Prog1/tree/master/Conway/Eletjatek</link>                              
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A szabályok ugyan azok, mint java-ban. A fordítás lesz különböző, mert a QT keretrendszert használunk. A <command>qmake -project</command> parancsal legeneráljuk
+            a .pro file-t. Majd ezt futtatjuk, ami legenerálja a make file-t. Végül a <command>make</command> parancsal fordítjuk le a programunkat. Futtatni pedig <command>./eletjatek</command> parancsal tudjuk.
+        </para> 
+<para>
+<programlisting language="C++"><![CDATA[
+$ more sejtablak.h
+#ifndef SEJTABLAK_H
+#define SEJTABLAK_H
+
+#include <QtGui/QMainWindow>
+#include <QPainter>
+#include "sejtszal.h"
+
+class SejtSzal;
+
+class SejtAblak : public QMainWindow
+{
+    Q_OBJECT
+
+public:
+    SejtAblak(int szelesseg = 100, int magassag = 75, QWidget *parent = 0);
+    ~SejtAblak();
+    static const bool ELO = true;
+    static const bool HALOTT = false;
+    void vissza(int racsIndex);
+
+protected:
+    bool ***racsok;
+    bool **racs;
+    int racsIndex;
+    int cellaSzelesseg;
+    int cellaMagassag;
+    int szelesseg;
+    int magassag;    
+    void paintEvent(QPaintEvent*);
+    void siklo(bool **racs, int x, int y);
+    void sikloKilovo(bool **racs, int x, int y);
+
+private:
+    SejtSzal* eletjatek;
+
+};
+
+#endif]]>
+</programlisting>
+</para>
+<para>
+A sejtablak.cpp fájlban a paintEvent funkcióval rajzoljuk ki az aktuális rácsot. A for ciklus végigmegy a sorokon, a belső pedig az oszlopokon, és kirajzoljuk a sejtcellát. A sikliKilovo függvény lövi ki a siklókat. Egyesével rajzoljuk ki a sejteket a pontokra. Java-ban a konstruktor készítette el nekünk a  siklókilövőhöz szükséges ábrát, amire itt egy külen eljárást írtunk.
+</para>
+<programlisting language="C++"><![CDATA[
+$ more sejtablak.cpp
+#include "sejtablak.h"
+
+SejtAblak::SejtAblak(int szelesseg, int magassag, QWidget *parent)
+    : QMainWindow(parent)
+{
+    setWindowTitle("A John Horton Conway-féle életjáték");
+
+    this->magassag = magassag;
+    this->szelesseg = szelesseg;
+
+    cellaSzelesseg = 6;
+    cellaMagassag = 6;
+
+    setFixedSize(QSize(szelesseg*cellaSzelesseg, magassag*cellaMagassag));
+
+    racsok = new bool**[2];
+    racsok[0] = new bool*[magassag];
+    for(int i=0; i<magassag; ++i)
+        racsok[0][i] = new bool [szelesseg];
+    racsok[1] = new bool*[magassag];
+    for(int i=0; i<magassag; ++i)
+        racsok[1][i] = new bool [szelesseg];
+
+    racsIndex = 0;
+    racs = racsok[racsIndex];
+    for(int i=0; i<magassag; ++i)
+        for(int j=0; j<szelesseg; ++j)
+            racs[i][j] = HALOTT;
+    sikloKilovo(racs, 5, 60);
+
+
+    eletjatek = new SejtSzal(racsok, szelesseg, magassag, 120, this);
+    eletjatek->start();
+
+}
+
+void SejtAblak::paintEvent(QPaintEvent*) {
+    QPainter qpainter(this);
+
+    bool **racs = racsok[racsIndex];
+    for(int i=0; i<magassag; ++i) {
+        for(int j=0; j<szelesseg; ++j) {
+            if(racs[i][j] == ELO)
+                qpainter.fillRect(j*cellaSzelesseg, i*cellaMagassag,
+                                  cellaSzelesseg, cellaMagassag, Qt::black);
+            else
+                qpainter.fillRect(j*cellaSzelesseg, i*cellaMagassag,
+                                  cellaSzelesseg, cellaMagassag, Qt::white);
+            qpainter.setPen(QPen(Qt::gray, 1));
+
+            qpainter.drawRect(j*cellaSzelesseg, i*cellaMagassag,
+                              cellaSzelesseg, cellaMagassag);
+        }
+    }
+
+    qpainter.end();
+}
+
+
+SejtAblak::~SejtAblak()
+{
+    delete eletjatek;
+
+    for(int i=0; i<magassag; ++i) {
+        delete[] racsok[0][i];
+        delete[] racsok[1][i];
+    }
+
+    delete[] racsok[0];
+    delete[] racsok[1];
+    delete[] racsok;
+
+}
+
+void SejtAblak::vissza(int racsIndex)
+{
+    this->racsIndex = racsIndex;
+    update();
+}
+
+void SejtAblak::siklo(bool **racs, int x, int y) {
+
+    racs[y+ 0][x+ 2] = ELO;
+    racs[y+ 1][x+ 1] = ELO;
+    racs[y+ 2][x+ 1] = ELO;
+    racs[y+ 2][x+ 2] = ELO;
+    racs[y+ 2][x+ 3] = ELO;
+
+}
+
+void SejtAblak::sikloKilovo(bool **racs, int x, int y) {
+
+    racs[y+ 6][x+ 0] = ELO;
+    racs[y+ 6][x+ 1] = ELO;
+    racs[y+ 7][x+ 0] = ELO;
+    racs[y+ 7][x+ 1] = ELO;
+
+    racs[y+ 3][x+ 13] = ELO;
+
+    racs[y+ 4][x+ 12] = ELO;
+    racs[y+ 4][x+ 14] = ELO;
+
+    racs[y+ 5][x+ 11] = ELO;
+    racs[y+ 5][x+ 15] = ELO;
+    racs[y+ 5][x+ 16] = ELO;
+    racs[y+ 5][x+ 25] = ELO;
+
+    racs[y+ 6][x+ 11] = ELO;
+    racs[y+ 6][x+ 15] = ELO;
+    racs[y+ 6][x+ 16] = ELO;
+    racs[y+ 6][x+ 22] = ELO;
+    racs[y+ 6][x+ 23] = ELO;
+    racs[y+ 6][x+ 24] = ELO;
+    racs[y+ 6][x+ 25] = ELO;
+
+    racs[y+ 7][x+ 11] = ELO;
+    racs[y+ 7][x+ 15] = ELO;
+    racs[y+ 7][x+ 16] = ELO;
+    racs[y+ 7][x+ 21] = ELO;
+    racs[y+ 7][x+ 22] = ELO;
+    racs[y+ 7][x+ 23] = ELO;
+    racs[y+ 7][x+ 24] = ELO;
+
+    racs[y+ 8][x+ 12] = ELO;
+    racs[y+ 8][x+ 14] = ELO;
+    racs[y+ 8][x+ 21] = ELO;
+    racs[y+ 8][x+ 24] = ELO;
+    racs[y+ 8][x+ 34] = ELO;
+    racs[y+ 8][x+ 35] = ELO;
+
+    racs[y+ 9][x+ 13] = ELO;
+    racs[y+ 9][x+ 21] = ELO;
+    racs[y+ 9][x+ 22] = ELO;
+    racs[y+ 9][x+ 23] = ELO;
+    racs[y+ 9][x+ 24] = ELO;
+    racs[y+ 9][x+ 34] = ELO;
+    racs[y+ 9][x+ 35] = ELO;
+
+    racs[y+ 10][x+ 22] = ELO;
+    racs[y+ 10][x+ 23] = ELO;
+    racs[y+ 10][x+ 24] = ELO;
+    racs[y+ 10][x+ 25] = ELO;
+
+    racs[y+ 11][x+ 25] = ELO;
+
+}]]>
+</programlisting>
+<para>
+A sejtasztal.cpp-ben a szomszedokSzama() függvény végigmegy mind a 8 szomszédon. Az idoDejlodes() függvény mondja meg azt, hogy egy sejt él vagy hal. Ahogy már a szabályoknál tisztáztuk, ha 2 vagy 3 szomszédja van, akkor élő, ha annál kevesebb, meghal. 
+</para>
+<programlisting language="C++"><![CDATA[
+$ more sejtszal.cpp
+#include "sejtszal.h"
+
+SejtSzal::SejtSzal(bool ***racsok, int szelesseg, int magassag, int varakozas, SejtAblak *sejtAblak)
+{
+    this->racsok = racsok;
+    this->szelesseg = szelesseg;
+    this->magassag = magassag;
+    this->varakozas = varakozas;
+    this->sejtAblak = sejtAblak;
+
+    racsIndex = 0;
+}
+
+int SejtSzal::szomszedokSzama(bool **racs,
+                              int sor, int oszlop, bool allapot) {
+    int allapotuSzomszed = 0;
+    for(int i=-1; i<2; ++i)
+        for(int j=-1; j<2; ++j)
+            if(!((i==0) && (j==0))) {
+        int o = oszlop + j;
+        if(o < 0)
+            o = szelesseg-1;
+        else if(o >= szelesseg)
+            o = 0;
+
+        int s = sor + i;
+        if(s < 0)
+            s = magassag-1;
+        else if(s >= magassag)
+            s = 0;
+
+        if(racs[s][o] == allapot)
+            ++allapotuSzomszed;
+    }
+
+    return allapotuSzomszed;
+}
+
+void SejtSzal::idoFejlodes() {
+
+    bool **racsElotte = racsok[racsIndex];
+    bool **racsUtana = racsok[(racsIndex+1)%2];
+
+    for(int i=0; i<magassag; ++i) {
+        for(int j=0; j<szelesseg; ++j) {
+
+            int elok = szomszedokSzama(racsElotte, i, j, SejtAblak::ELO);
+
+            if(racsElotte[i][j] == SejtAblak::ELO) {
+                if(elok==2 || elok==3)
+                    racsUtana[i][j] = SejtAblak::ELO;
+                else
+                    racsUtana[i][j] = SejtAblak::HALOTT;
+            }  else {
+                if(elok==3)
+                    racsUtana[i][j] = SejtAblak::ELO;
+                else
+                    racsUtana[i][j] = SejtAblak::HALOTT;
+            }
+        }
+    }
+    racsIndex = (racsIndex+1)%2;
+}
+
+void SejtSzal::run()
+{
+    while(true) {
+        QThread::msleep(varakozas);
+        idoFejlodes();
+        sejtAblak->vissza(racsIndex);
+    }
+
+}
+
+SejtSzal::~SejtSzal()
+{
+}]]>
+</programlisting>
+<para>
+Ezeket a fájlokat egy mappába kell helyezzük, telepíteni kell a qmake Tool-t, és a megfelelő parancsok után le tudjuk futtani a programot. Ez egy 2D-s sejttér ezért az állomásokat a saját siklóik rombolják le.
+</para>
+<programlisting><![CDATA[
+$ sudo apt-get install qtcreator
+$ sudo apt install libcanberra-gtk-module libcanberra-gtk3-module
+$ ls
+main.cpp  sejtablak.cpp  sejtablak.h  sejtszal.cpp  sejtszal.h
+$ qmake-qt4 -project
+$ qmake-qt4 eletjatek.pro
+$ ls
+eletjatek.pro  Makefile       sejtablak.h   sejtszal.h
+main.cpp       sejtablak.cpp  sejtszal.cpp
+$ make
+$ ./eletjatek]]>
+</programlisting>
+
+<para>
+<figure>
+	<title>Életjáték</title>
+	<mediaobject>
+		<imageobject>
+		<imagedata fileref="img/elet.png" format="PNG"/>
+		</imageobject>
+	</mediaobject>
+	</figure>
+</para>           
+    </section>        
+    <section>
+        <title>BrainB Benchmark</title>
+        <para>
+        </para>
+        <para>
+            Megoldás videó: 
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href=""></link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: A program célja, az e-sportolók tesztelése. Az egérgombot lenyomva kell tartani és követni kell a négyzeten lévő kört. Minél tovább tudjuk benne tartani az
+            egerünket annál több négyzet jelenik meg hogy bezavarjon. Ha elveszítjuk eltünnek a zavaró négyzetek és lassul a mozgás. 
+        </para>    
+            <para>
+                fordítás, futtatás: <command>/home/.../qmake brainB.pro</command>, <command>make</command>, <command>./brainB</command>
+            </para>  
+<para>
+<figure>
+	<title>BrainB működés közben - Bátfai Norbert</title>
+	<mediaobject>
+		<imageobject>
+		<imagedata fileref="img/brain.png" format="PNG"/>
+		</imageobject>
+	</mediaobject>
+	</figure>
+</para>      
+    </section>        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                

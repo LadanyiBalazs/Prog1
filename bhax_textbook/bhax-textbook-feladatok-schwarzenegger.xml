@@ -1,0 +1,59 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Schwarzenegger!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title>Szoftmax Py MNIST</title>
+        <para>aa
+            Python
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:                
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: Ehhez a programhoz szükségünk van egy Pyton fejlesztői környezetre, és a Tensorflowra, amit gépi tanuláshoz kell használni. Az MNIST egy olyan adatbázis,
+            ami segítséget nyújt a tanításban képelemző programoknak és neurális hálózatoknak is. Ebben az adatbázisban képek vannak, amik mintaként segítenek a bemeneti képek elemzésében.
+            Ebben az esetben 60000 képpel tanítjuk a hálózatot, és 10000 képpel, pedig vizsgáljuk a pontosságát.
+        </para>
+        <para>
+            A programot tanulása után teszteljük az adatbázisban lévő képek segítségével. A mi esetünkben ezek a hármastól-kilencesik terjedő képek.
+            A futtatási parancs: <command>python softmax.py</command>
+        </para>
+    </section>
+    <section>
+        <title>Mély MNIST</title>
+        <para>
+            Python            
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:                
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: Ezt a feladatot passzolnám.
+        </para>
+    </section>
+    <section>
+        <title>Robotpszichológia</title>
+        <para>
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:                
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat: Ezt a feladatot passzolnám.
+        </para>
+    </section>        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+</chapter>                
